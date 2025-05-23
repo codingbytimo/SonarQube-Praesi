@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+			.reveal section h1 {
+			  color: #00e0ff;
+			}
+			.reveal section h2,
+			.reveal section h3 {
+			  color: #ff7300;
+			}
+			.reveal section ul li {
+			  font-size: 1.1em;
+			  margin-bottom: 0.5em;
+			}
+			.reveal pre code {
+			  background: #1e1e1e;
+			  color: #00ff90;
+			  padding: 1em;
+			  border-radius: 0.5em;
+			  font-size: 0.9em;
+			}
+			.reveal section img {
+			  border: 4px solid #444;
+			  border-radius: 1em;
+			  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+			}
+		  </style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- Titel -->
+				<section>
+					<h1>SonarQube</h1>
+					<h3>Codequalität & statische Analyse in Java-Projekten</h3>
+					<p>Software Engineering Präsentation</p>
+				  </section>
+		  
+				  <!-- Einführung -->
+				  <section>
+					<h2>Warum Codequalität?</h2>
+					<ul>
+					  <li>Wartbarkeit und Lesbarkeit sichern</li>
+					  <li>Bugs frühzeitig erkennen</li>
+					  <li>Technische Schulden vermeiden</li>
+					  <li>Team-Standards und Best Practices fördern</li>
+					</ul>
+				  </section>
+		  
+				  <!-- Was ist SonarQube? -->
+				  <section>
+					<h2>Was ist SonarQube?</h2>
+					<ul>
+					  <li>Open Source Tool zur statischen Codeanalyse</li>
+					  <li>Findet Bugs, Sicherheitslücken, Code Smells</li>
+					  <li>Visualisiert Metriken: Komplexität, Coverage, Duplikate</li>
+					  <li>Webinterface & CI/CD-Integration</li>
+					</ul>
+				  </section>
+		  
+				  <!-- Features -->
+				  <section>
+					<h2>Wichtige Features</h2>
+					<ul>
+					  <li>Mehr als 25 Programmiersprachen</li>
+					  <li>Custom Rules & Quality Gates</li>
+					  <li>Integration in Maven, Gradle, Jenkins, GitHub</li>
+					  <li>Technische Schuldenberechnung</li>
+					</ul>
+				  </section>
+		  
+				  <!-- Architektur -->
+				  <section>
+					<h2>Architektur von SonarQube</h2>
+					<img src="https://docs.sonarsource.com/images/sonarqube-architecture.png" alt="Architektur" style="width: 70%;">
+					<p>Scanner ➜ SonarQube Server ➜ Datenbank</p>
+				  </section>
+		  
+				  <!-- Showcase Einstieg -->
+				  <section>
+					<h2>Java Showcase</h2>
+					<p>Kleines Maven-Projekt mit fehlerhaftem Code und SonarQube-Analyse</p>
+				  </section>
+		  
+				  <!-- Beispielcode -->
+				  <section>
+					<h3>Beispielcode: Java-Klasse</h3>
+					<pre><code class="language-java">
+		public class Calculator {
+				public int add(int a, int b) {
+					return a + b;
+				}
+				public int divide(int a, int b) {
+					return a / b; // Kein Check auf Division durch 0
+				}
+		}
+		</code></pre>
+				  </section>
+		  
+				  <!-- Maven Setup -->
+				  <section>
+					<h3>pom.xml Setup</h3>
+					<pre><code class="language-xml">
+		  <plugin>
+			<groupId>org.sonarsource.scanner.maven</groupId>
+			<artifactId>sonar-maven-plugin</artifactId>
+			<version>3.9.1.2184</version>
+		  </plugin>
+					</code></pre>
+					<p>In der Kommandozeile:</p>
+					<pre><code>mvn clean verify sonar:sonar -Dsonar.login=TOKEN</code></pre>
+				  </section>
+		  
+				  <!-- Analyse Ergebnis -->
+				  <section>
+					<h2>Analyse-Ergebnis</h2>
+					<ul>
+					  <li>1 Bug erkannt: mögliche Division durch 0</li>
+					  <li>Coverage < 80%: Warnung</li>
+					  <li>Code Smell durch fehlende Kommentare</li>
+					</ul>
+				  </section>
+		  
+				  <!-- Fazit -->
+				  <section>
+					<h2>Fazit</h2>
+					<ul>
+					  <li>Einfach integrierbar in Java-Projekte</li>
+					  <li>Hilft bei Qualitätssicherung und Teamarbeit</li>
+					  <li>Wertvolles Werkzeug für professionelle Entwicklung</li>
+					</ul>
+				  </section>
+		  
+				  <!-- Fragen -->
+				  <section>
+					<h2>Fragen?</h2>
+					<p>Danke für eure Aufmerksamkeit!</p>
+				  </section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
