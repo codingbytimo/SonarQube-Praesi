@@ -13,7 +13,8 @@
 
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	<style>
+	<link rel="stylesheet" href="dist/theme/dracula.css">
+	<!-- <style>
 		.reveal section h1 {
 			color: #00e0ff;
 		}
@@ -41,7 +42,7 @@
 			border-radius: 1em;
 			box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 		}
-	</style>
+	</style> -->
 </head>
 
 <body>
@@ -50,16 +51,19 @@
 			<!-- Titel -->
 			<section>
 				<h1>SonarQube</h1>
-				<h3>Codequalität & statische Analyse in Java-Projekten</h3>
+				<h3>Codequalität & statische Analyse für Softwareprojekte</h3>
 				<p>Software Engineering Präsentation</p>
+				<p>Timo Kochanski</p>
 			</section>
 			<section>
-				<h1>Agenda</h1>
+				<h2>Agenda</h2>
 				<ul>
 					<li>Warum Codequalität?</li>
 					<li>Was ist SonarQube?</li>
-					<li>Features</li>
-					<li>SonarQube nutzen</li>
+					<li>SonarQube Editions</li>
+					<li>Wie funktioniert SonarQube?</li>
+					<li>SonarQube nutzen (Live Demo)</li>
+					<li>Fazit</li>
 				</ul>
 			</section>
 
@@ -67,39 +71,43 @@
 			<section>
 				<section>
 					<h2>Warum Codequalität?</h2>
+					<video data-autoplay src="resources/goodCode.mp4" class="r-stretch"></video>
+					<p>Never change a running system oder sowas</p>
+				</section>
+				<section>
+					<h2>Warum Codequalität?</h2>
 					<ul>
-						<li>Wartbarkeit und Lesbarkeit sichern</li>
-						<li>Bugs frühzeitig erkennen</li>
-						<li>Technische Schulden vermeiden</li>
 						<li>Team-Standards und Best Practices fördern</li>
+						<li>Früherkennung von Fehlern & Sicherheitsrisiken</li>
+						<li>Verbesserung von Lesbarkeit und Wartbarkeit</li>
+						<li>Höhere Codequalität erzielen</li>
+						<li>Unterstützt Teamstandards & Clean Code</li>
+						<li>Technische Schulden vermeiden</li>
 					</ul>
 				</section>
 				<section>
-					<h2>Technische Schulden</h2>
+					<h2>Was sind technische Schulden?</h2>
+					<p>"Ich mach das mal schnell..."</p>
 					<ul>
-						<li>Test</li>
+						<li>Metapher für bewusst eingebaute oder ignorierte Schwächen im Code, um schneller zu sein</li>
+						<li>Kurzfristige Produktivität kann langfristige Kosten verursachen</li>
 					</ul>
 				</section>
 			</section>
 
 			<!-- Was ist SonarQube? -->
 			<section>
-				<h2>Was ist SonarQube?</h2>
-				<ul>
-					<li>Open Source Tool zur statischen Codeanalyse</li>
-					<li>Findet Bugs, Sicherheitslücken, Code Smells</li>
-					<li>Visualisiert Metriken: Komplexität, Coverage, Duplikate</li>
-					<li>Webinterface & CI/CD-Integration</li>
-				</ul>
-			</section>
-
-			<!-- Features -->
-			<section>
 				<section>
-					<h2>Features</h2>
+					<h2>Was ist SonarQube?</h2>
+					<ul>
+						<li>Open Source Tool zur statischen Codeanalyse</li>
+						<li>Findet Bugs, Sicherheitslücken, Code Smells</li>
+						<li>Visualisiert Metriken in einem Webinterface</li>
+						<li>CI/CD-Integration</li>
+					</ul>
 				</section>
-				<section>
-					<h2>Bugs erkennen</h2>
+				<!-- <section>
+					<h2>Bugs</h2>
 					Durch Bugs kann sich ein Programm anders verhalten, als eigentlich gewollt oder gedacht:
 					<pre><code class="language-java">
 						public int addNumbers (int a, int b) {
@@ -115,69 +123,177 @@
 			String username = "admin";
 			String password = "%h28JiuWlsL16&gFNnwJ89JHjbd?nj!fs"
 					</code></pre>
+				</section> -->
+				<section>
+					<h2>Was ist ein Code Smell?</h2>
+					<ul>
+						<li>Kein direkter Bug – aber möglicher "Designfehler"</li>
+						<li>Oft schwierig zu warten oder zu testen</li>
+						<li>Beispiele:
+							<ul>
+								<li>Lange Methoden</li>
+								<li>Duplizierter Code</li>
+								<li>Unnötige Komplexität</li>
+								<li>Unbenutzte Variablen</li>
+							</ul>
+						</li>
 				</section>
 			</section>
-
-			<!-- Architektur -->
+			<!-- Editions -->
 			<section>
-				<h2>Architektur von SonarQube</h2>
-				<img src="https://docs.sonarsource.com/images/sonarqube-architecture.png" alt="Architektur"
-					style="width: 70%;">
-				<p>Scanner ➜ SonarQube Server ➜ Datenbank</p>
+				<section>
+					<h2>SonarQube Editions</h2>
+				</section>
+				<section>
+					<h3>Community Edition</h3>
+					<ul>
+						<li><strong>Kostenlos & Open Source</strong></li>
+						<li>Basisfunktionen für statische Codeanalyse</li>
+						<li>Unterstützt viele Sprachen (Java, JavaScript, Python, usw.)</li>
+						<li>Findet Bugs, Code Smells, Sicherheitslücken</li>
+						<li>Ideal für kleine Teams oder Lernzwecke</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Developer Edition</h3>
+					<ul>
+						<li>Erweiterte Spracheunterstützung (C, C++, Swift, Kotlin, u. a.)</li>
+						<li><strong>Branch-Analyse</strong> (z. B. Feature Branches separat analysieren)</li>
+						<li><strong>Pull Request Decoration</strong> für GitHub, GitLab, Bitbucket</li>
+						<li>Sicherheitsanalysen auf Basis von OWASP Top 10</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Enterprise Edition</h3>
+					<ul>
+						<li><strong>Projekt-Portfolios</strong> zur Verwaltung vieler Projekte</li>
+						<li>Zentrale Dashboards & Reporting für Teams und Abteilungen</li>
+						<li>Benutzer-, Rechte- und Rollenverwaltung</li>
+						<li>Skalierbar für große Organisationen</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Data Center Edition</h3>
+					<ul>
+						<li>Hochverfügbarkeit (High Availability)</li>
+						<li>Cluster-Setup mit Load Balancing</li>
+						<li>Für große Unternehmen mit kritischer CI/CD-Infrastruktur</li>
+						<li>Monitoring & Ausfallsicherheit im Fokus</li>
+					</ul>
+				</section>
 			</section>
-
-			<!-- Showcase Einstieg -->
+			<!-- Wie funktioniert dat? -->
 			<section>
-				<h2>Java Showcase</h2>
-				<p>Kleines Maven-Projekt mit fehlerhaftem Code und SonarQube-Analyse</p>
+				<section>
+					<h2>Wie funktioniert SonarQube?</h2>
+					<ul>
+						<li>Clientseitige Analyse via Maven, Gradle, etc.</li>
+						<li>Ergebnisse werden an lokalen oder Remote-Server gesendet</li>
+						<li>Analyse anhand von Regelprofilen (Quality Profiles)</li>
+						<li>Dashboards visualisieren Ergebnisse und Metriken</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Quality Gates & Metrics</h2>
+					<ul>
+						<li>Quality Gate: Definiert, ob Code „akzeptabel“ ist</li>
+						<li>Typische Metriken:
+							<ul>
+								<li>Test Coverage</li>
+								<li>Duplikate im Code</li>
+								<li>Bugs</li>
+								<li>Sicherheitsrisiken</li>
+							</ul>
+						</li>
+						<li>Custom Gates möglich <br> (z. B. „Coverage < 80%=Fail“)</li>
+					</ul>
+				</section>
 			</section>
-
-			<!-- Beispielcode -->
+			<!-- Demo Einstieg -->
 			<section>
-				<h3>Beispielcode: Java-Klasse</h3>
-				<pre><code class="language-java">
-		public class Calculator {
-				public int add(int a, int b) {
-					return a + b;
-				}
-				public int divide(int a, int b) {
-					return a / b; // Kein Check auf Division durch 0
-				}
-		}
-		</code></pre>
-			</section>
+				<section>
+					<h2>Demo mit Java Projekt</h2>
+					<p>Kleines Maven-Projekt mit fehlerhaftem Code und lokaler SonarQube instanz</p>
+					<img src="resources/java.png" class="r-stretch">
+				</section>
 
-			<!-- Maven Setup -->
-			<section>
-				<h3>pom.xml Setup</h3>
-				<pre><code class="language-xml">
+				<section>
+					<h3>1. SonarQube installieren & starten</h3>
+					<ul>
+						<li>Download unter: <a href="https://www.sonarsource.com/products/sonarqube/"
+								target="_blank">sonarsource.com</a></li>
+						<li>ZIP entpacken</li>
+						<li>Start über Terminal:
+							<pre><code>./bin/[os]/sonar.sh start</code></pre>
+						</li>
+						<li>Im Browser öffnen: <code>http://localhost:9000</code></li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>2. Java-Projekt vorbereiten</h3>
+					<ul>
+						<li>Maven-Projekt mit <code>pom.xml</code> verwenden</li>
+						<li>Optional: Java-Version setzen mit Compiler-Plugin</li>
+						<li>Beispiel:
+							<pre><code>&lt;source&gt;11&lt;/source&gt;</code></pre>
+						</li>
+					</ul>
+				</section>
+				<!-- Maven Setup -->
+				<section>
+					<h3>pom.xml Setup</h3>
+					<p>Innerhalb vom build tag einfügen</p>
+					<pre><code class="language-xml">
 		  <plugin>
 			<groupId>org.sonarsource.scanner.maven</groupId>
 			<artifactId>sonar-maven-plugin</artifactId>
 			<version>3.9.1.2184</version>
 		  </plugin>
 					</code></pre>
-				<p>In der Kommandozeile:</p>
-				<pre><code>mvn clean verify sonar:sonar -Dsonar.login=TOKEN</code></pre>
-			</section>
+				</section>
 
-			<!-- Analyse Ergebnis -->
-			<section>
-				<h2>Analyse-Ergebnis</h2>
-				<ul>
-					<li>1 Bug erkannt: mögliche Division durch 0</li>
-					<li>Coverage < 80%: Warnung</li>
-					<li>Code Smell durch fehlende Kommentare</li>
-				</ul>
+				<section>
+					<h3>3. Projekt in SonarQube anlegen</h3>
+					<ul>
+						<li>Auf <strong>"Create Project"</strong> klicken</li>
+						<li>Project Key und Name festlegen</li>
+						<li><strong>Token generieren</strong> (wird bei der Analyse gebraucht)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>4. Analyse mit Maven starten</h3>
+					<p>Im Projektordner folgenden Befehl ausführen:</p>
+					<pre><code>
+				mvn clean verify sonar:sonar \
+				  -Dsonar.projectKey=DEIN_KEY \
+				  -Dsonar.host.url=http://localhost:9000 \
+				  -Dsonar.token=DEIN_TOKEN
+					</code></pre>
+					<p>→ Startet die Analyse & sendet Ergebnisse an SonarQube</p>
+				</section>
+
+				<section>
+					<h3>5. Analyse im Browser ansehen</h3>
+					<ul>
+						<li>Ergebnisse unter <code>http://localhost:9000</code> einsehbar</li>
+						<li>Qualitäts-Gate prüfen für eigenen Usecase</li>
+					</ul>
+				</section>
 			</section>
 
 			<!-- Fazit -->
 			<section>
 				<h2>Fazit</h2>
 				<ul>
-					<li>Einfach integrierbar in Java-Projekte</li>
-					<li>Hilft bei Qualitätssicherung und Teamarbeit</li>
-					<li>Wertvolles Werkzeug für professionelle Entwicklung</li>
+					<li>SonarQube ist ein mächtiges Werkzeug für Codequalität</li>
+					<li>Einfach in moderne Dev-Workflows integrierbar</li>
+					<li>Hilft Teams, Standards einzuhalten & Bugs früh zu finden</li>
+					<li>Live-Demo zeigt: Analyse ist einfach & effektiv</li>
 				</ul>
 			</section>
 
@@ -185,6 +301,13 @@
 			<section>
 				<h2>Fragen?</h2>
 				<p>Danke für eure Aufmerksamkeit!</p>
+			</section>
+
+			<section>
+				<h2>Quellen</h2>
+				<ul>
+					<li><a href="https://www.sonarsource.com/" data-preview-link>Sonarsource</a></li>
+				</ul>
 			</section>
 		</div>
 	</div>
