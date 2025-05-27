@@ -58,10 +58,10 @@
 			<section>
 				<h2>Agenda</h2>
 				<ul>
-					<li>Warum Codequalität?</li>
+					<li>Warum Codequalität prüfen?</li>
 					<li>Was ist SonarQube?</li>
-					<li>SonarQube Editions</li>
 					<li>Wie funktioniert SonarQube?</li>
+					<li>SonarQube Editions</li>
 					<li>SonarQube nutzen (Live Demo)</li>
 					<li>Fazit</li>
 				</ul>
@@ -70,17 +70,17 @@
 			<!-- Einführung -->
 			<section>
 				<section>
-					<h2>Warum Codequalität?</h2>
+					<h2>Warum Codequalität prüfen?</h2>
 					<video data-autoplay src="resources/goodCode.mp4" class="r-stretch"></video>
 					<p>Never change a running system oder sowas</p>
 				</section>
 				<section>
-					<h2>Warum Codequalität?</h2>
+					<h2>Warum Codequalität prüfen?</h2>
 					<ul>
 						<li>Team-Standards und Best Practices fördern</li>
 						<li>Früherkennung von Fehlern & Sicherheitsrisiken</li>
 						<li>Verbesserung von Lesbarkeit und Wartbarkeit</li>
-						<li>Höhere Codequalität erzielen</li>
+						<li>Höhere Gesamtqualität erzielen</li>
 						<li>Unterstützt Teamstandards & Clean Code</li>
 						<li>Technische Schulden vermeiden</li>
 					</ul>
@@ -100,43 +100,71 @@
 				<section>
 					<h2>Was ist SonarQube?</h2>
 					<ul>
-						<li>Open Source Tool zur statischen Codeanalyse</li>
-						<li>Findet Bugs, Sicherheitslücken, Code Smells</li>
+						<li>(Open Source) Tool zur statischen Codeanalyse</li>
+						<li>Findet Bugs, Sicherheitslücken & Code Smells</li>
 						<li>Visualisiert Metriken in einem Webinterface</li>
-						<li>CI/CD-Integration</li>
+						<li>Kann in CI/CD-Umgebungen eingebunden werden</li>
+						<li>SonarQube for IDE (früher SonarLint)</li>
 					</ul>
 				</section>
-				<!-- <section>
-					<h2>Bugs</h2>
-					Durch Bugs kann sich ein Programm anders verhalten, als eigentlich gewollt oder gedacht:
-					<pre><code class="language-java">
-						public int addNumbers (int a, int b) {
-							result = a - b;
-							return result;
-						}
-					</code></pre>
-				</section>
 				<section>
-					<h2>Sicherheitslücken</h2>
-					SonarQube erkennt Sicherheitslücken, bspw. Passwörter, welche im Code hardcoded werden.
-					<pre><code class="language-java">
-			String username = "admin";
-			String password = "%h28JiuWlsL16&gFNnwJ89JHjbd?nj!fs"
-					</code></pre>
-				</section> -->
-				<section>
-					<h2>Was ist ein Code Smell?</h2>
+					<h2>Was ist Code Smell?</h2>
 					<ul>
 						<li>Kein direkter Bug – aber möglicher "Designfehler"</li>
 						<li>Oft schwierig zu warten oder zu testen</li>
 						<li>Beispiele:
 							<ul>
 								<li>Lange Methoden</li>
-								<li>Duplizierter Code</li>
+								<li>Unnötig duplizierter Code</li>
 								<li>Unnötige Komplexität</li>
 								<li>Unbenutzte Variablen</li>
 							</ul>
 						</li>
+				</section>
+			</section>
+			<!-- Wie funktioniert dat? -->
+			<section>
+				<section>
+					<h2>Wie funktioniert SonarQube?</h2>
+					<ul>
+						<li>Führt clientseitige, statische Codeanalyse durch</li>
+						<li>Ergebnisse werden an lokalen oder Remote-Server gesendet</li>
+						<li>Analyse anhand durch sog. Quality Profiles</li>
+						<li>Visualisierung von Ergebnissen und Metriken in Dashboards</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Statische Codeanalyse?</h2>
+					<ul>
+						<li>Quellcode wird analysiert, ohne dass er ausgeführt wird</li>
+						<li>Code wird geparsed (Syntaxbaum)</li>
+						<li>Anschließende Analyse anhand von Regeln</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Quality Profiles in SonarQube</h2>
+					<ul>
+						<li>Definieren, welche Regeln bei der Analyse gelten</li>
+						<li>Pro Programmiersprache kann ein Profil aktiv sein</li>
+						<li>Vordefinierte Profile vorhanden (z. B. "Sonar way")</li>
+						<li>Eigene Profile möglich (anpassbar je Projekt/Team)</li>
+						<li>Aktive Regeln beeinflussen direkt, was als Fehler gemeldet wird</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Quality Gates & Metriken</h2>
+					<ul>
+						<li>Quality Gate: Definiert, ob Code „akzeptabel“ ist</li>
+						<li>Typische Metriken:
+							<ul>
+								<li>Test Coverage</li>
+								<li>Duplikate im Code</li>
+								<li>Bugs</li>
+								<li>Sicherheitsrisiken</li>
+							</ul>
+						</li>
+						<li>Custom Gates möglich <br> (z. B. „Coverage < 80%=Fail“)</li>
+					</ul>
 				</section>
 			</section>
 			<!-- Editions -->
@@ -185,38 +213,11 @@
 					</ul>
 				</section>
 			</section>
-			<!-- Wie funktioniert dat? -->
-			<section>
-				<section>
-					<h2>Wie funktioniert SonarQube?</h2>
-					<ul>
-						<li>Clientseitige Analyse via Maven, Gradle, etc.</li>
-						<li>Ergebnisse werden an lokalen oder Remote-Server gesendet</li>
-						<li>Analyse anhand von Regelprofilen (Quality Profiles)</li>
-						<li>Dashboards visualisieren Ergebnisse und Metriken</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Quality Gates & Metrics</h2>
-					<ul>
-						<li>Quality Gate: Definiert, ob Code „akzeptabel“ ist</li>
-						<li>Typische Metriken:
-							<ul>
-								<li>Test Coverage</li>
-								<li>Duplikate im Code</li>
-								<li>Bugs</li>
-								<li>Sicherheitsrisiken</li>
-							</ul>
-						</li>
-						<li>Custom Gates möglich <br> (z. B. „Coverage < 80%=Fail“)</li>
-					</ul>
-				</section>
-			</section>
 			<!-- Demo Einstieg -->
 			<section>
 				<section>
 					<h2>Demo mit Java Projekt</h2>
-					<p>Kleines Maven-Projekt mit fehlerhaftem Code und lokaler SonarQube instanz</p>
+					<p>Kleines Maven-Projekt mit schlechtem Code und lokaler SonarQube Instanz</p>
 					<img src="resources/java.png" class="r-stretch">
 				</section>
 
@@ -246,7 +247,7 @@
 				<!-- Maven Setup -->
 				<section>
 					<h3>pom.xml Setup</h3>
-					<p>Innerhalb vom build tag einfügen</p>
+					<p>Innerhalb vom build-tag einfügen</p>
 					<pre><code class="language-xml">
 		  <plugin>
 			<groupId>org.sonarsource.scanner.maven</groupId>
@@ -285,28 +286,51 @@
 					</ul>
 				</section>
 			</section>
-
+			<section>
+				<h2>"Alternativen"</h2>
+				<ul>
+					<li>Veracode</li>
+					<li>Checkmarx</li>
+					<li>Deepsource</li>
+				</ul>
+			</section>
 			<!-- Fazit -->
 			<section>
-				<h2>Fazit</h2>
-				<ul>
-					<li>SonarQube ist ein mächtiges Werkzeug für Codequalität</li>
-					<li>Einfach in moderne Dev-Workflows integrierbar</li>
-					<li>Hilft Teams, Standards einzuhalten & Bugs früh zu finden</li>
-					<li>Live-Demo zeigt: Analyse ist einfach & effektiv</li>
-				</ul>
+				<section>
+					<h2>Fazit</h2>
+				</section>
+				<section>
+					<h2>Fazit</h2>
+					<ul>
+						<li>SonarQube ist ein gutes Werkzeug zur Verbesserung von Codequalität</li>
+						<li>Gut in Projekte bspw. über Maven integrierbar</li>
+						<li>Hilft Teams, Standards einzuhalten und Fehler zu bemerken</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Allerdings...</h2>
+					<ul>
+						<li>Statische Codeanalyse kann nicht alle Fehler erkennen</li>
+						<li>Manche Fehler treten erst bei Laufzeit auf</li>
+						<li>Die Analyse ist nur so gut wie eure festgelegten Regeln</li>
+					</ul>
+				</section>
 			</section>
 
 			<!-- Fragen -->
 			<section>
-				<h2>Fragen?</h2>
-				<p>Danke für eure Aufmerksamkeit!</p>
+				<h2>Danke für eure Aufmerksamkeit!</h2>
+				<p>Fragen?</p>
 			</section>
 
 			<section>
 				<h2>Quellen</h2>
 				<ul>
 					<li><a href="https://www.sonarsource.com/" data-preview-link>Sonarsource</a></li>
+					<li><a href="https://medium.com/@mrdevsecops/introduction-to-sonarqube-and-its-features-27c2e030068a" data-preview-link>Medium</a></li>
+					<li><a href="https://www.youtube.com/watch?v=7-P81EKq-r8" data-preview-link>Gutes Youtube Video</a></li>
+					<li><a href="https://www.checkpoint.com/de/cyber-hub/cloud-security/what-is-static-code-analysis/"
+							data-preview-link>Statische Codeanalyse</a></li>
 				</ul>
 			</section>
 		</div>
